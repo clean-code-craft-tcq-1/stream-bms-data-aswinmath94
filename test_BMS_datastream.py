@@ -24,7 +24,7 @@ class test_streaming_bms_data(unittest.TestCase):
 
 
     def test_bms_streaming_to_console(self):
-        self.assertTrue(bms_input_handler.bsm_stream_console_output(10)== [True,10])
+        self.assertTrue(bms_input_handler.bsm_stream_console_output(30)== [True,30])
 
 
 
