@@ -24,4 +24,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Console Redirect
-        run: cat > output.txt
+        run: ./test_BMS_datastream > output.txt
