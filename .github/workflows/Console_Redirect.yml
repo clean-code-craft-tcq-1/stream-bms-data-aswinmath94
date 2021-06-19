@@ -41,7 +41,7 @@ jobs:
          
       # Runs a single command using the runners shell
      - name: Console Redirect
-       run: python tee ./test_BMS_datastream.py > sudo output.txt
+       run: python /test_BMS_datastream.py > sudo /output.txt
        
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
