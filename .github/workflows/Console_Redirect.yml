@@ -24,4 +24,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Console Redirect
-        run: sudo tee /test_BMS_datastream.py > sudo /output.txt
+        run: Python test_BMS_datastream.py > output.txt
