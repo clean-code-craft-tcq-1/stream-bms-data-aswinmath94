@@ -24,4 +24,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Console Redirect
-        run: ls 2>$1> output.txt
+        run: ls 2>$1> C:\Padmashree\TCQFoundation\Project\stream-bms-data-aswinmath94\output.txt
