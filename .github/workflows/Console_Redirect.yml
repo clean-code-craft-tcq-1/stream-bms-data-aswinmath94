@@ -25,3 +25,6 @@ jobs:
       # Runs a single command using the runners shell
       - name: Console Redirect
         run: ls > output.txt
+
+      - name: Console 1
+        run: ls -ls > output.txt
