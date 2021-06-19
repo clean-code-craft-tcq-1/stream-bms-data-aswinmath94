@@ -24,4 +24,4 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Console Redirect
-        run:  test_BMS_datastream.py > output.txt
+        run:  ./test_BMS_datastream.py > ./output.txt
