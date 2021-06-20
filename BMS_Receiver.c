@@ -9,7 +9,7 @@
 void readfromConsole(void)
 {
 	char buffer[200];
-	while (scanf("%s",buffer)!=EOF)
+	while (scanf("%[^\n]s",buffer)!=EOF)
 	{
 		printf(" the value of the buffer is %s\n",buffer);
 	}
