@@ -5,13 +5,14 @@
 #include <string.h>
 #include <ctype.h>
 
-float Temperature[30]={};
-float SOC[30]={};
+
 typedef struct
 {
 	float min;
 	float max;
 }minMax;
+float Temperature[1024]={};
+float SOC[1024]={};
 
 minMax minMax1;
 
