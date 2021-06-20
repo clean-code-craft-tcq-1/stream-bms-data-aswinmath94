@@ -13,24 +13,26 @@ void readfromConsole(void)
 	float Temperature[30]={};
 	float SOC[30]={};
 	int i,j=0;
-	int paramindex=0;
+	int paramindex,Result,Result1=0;
 	const char * InputArray[] = {
     "{'temperature':",
     "'soc':" };
 
    while (scanf("%s\n", input) !=EOF) 
    {
-	   if ( (input== InputArray[0])|| (input== InputArray[1]))
+	   Result=strcmp(input, InputArray[0]); 
+	   Result1=strcmp(input, InputArray[1]);
+	   if(( Result ==0) || (Result1 ==0))
 	   {
 		   printf("the value of the character is %s\n", input);
-	    continue;
+	    
 	   }
 	   else
 	   {
 		   
 			   i = strlen(input);
-               input[i] = '\n';
-               input[i + 1] = '\0';
+               input[i-1] = '\0';
+               // input[i + 1] = '\0';
 		   if(paramindex%1!=0)
 		   {
 			   Temperature[j]= atof(input);
