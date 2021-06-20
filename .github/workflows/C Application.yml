@@ -1,10 +1,6 @@
 name: Build and Run
 
-on: 
-  workflow_run:
-    workflows: ["Console Redirect"]
-    types:
-      - completed
+on: [push,pull_request]
 
 jobs:
   build:
@@ -29,16 +25,4 @@ jobs:
     - name: run
       run: 
         g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
-       ./test_BMS_datastream.py | ./testchecker
-      
-    - name: collect coverage
-      run: gcovr --gcov-exclude=".*test.*" -r . --html --html-details -o coverage.html
-    - name: 'Upload Artifact'
-      uses: actions/upload-artifact@v2
-      with:
-        name: coverage
-        path: ./*.html
-        retention-days: 1
-
-
-   
+       ./test_BMS_datastream.py | ./testchecker 
