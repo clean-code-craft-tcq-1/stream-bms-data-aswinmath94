@@ -5,13 +5,20 @@
 #include <string.h>
 #include <ctype.h>
 
+float Temperature[30]={};
+float SOC[30]={};
+typedef struct
+{
+	float min;
+	float max;
+}minMax;
 
+minMax minMax1;
 
 void readfromConsole(void)
 {
 	char input[1024];
-	float Temperature[30]={};
-	float SOC[30]={};
+	
 	int i,j,k=0;
 	int paramindex,Result,Result1=0;
 	const char * InputArray[] = {
@@ -37,15 +44,17 @@ void readfromConsole(void)
 		   {
 			   Temperature[j]= atof(input);
 			   printf("the value of the temp is %f\n", Temperature[j]);
+			   j++;
 		   }
 		   else 
 		   {
 			   SOC[k]=atof(input);
-			   printf("the value of the SOC is %f\n", SOC[j]);
+			   printf("the value of the SOC is %f\n", SOC[k]);
+			   k++;
 		   }
 		   paramindex++;
-		   j++;
-		   k++;
+		   
+		   
 	   }
           
    }
@@ -53,8 +62,50 @@ void readfromConsole(void)
 
 }
 
+
+void findMinMax(float arrayvalue[])
+{
+
+	int i=0;
+	minMax1.min=minMax1.max=arrayvalue[0];
+	for(i=1; i<10; i++)
+	{
+		if(minMax1.min>arrayvalue[i])
+			minMax1.min=arrayvalue[i];
+		if(minMax1.max<arrayvalue[i])
+			minMax1.max=arrayvalue[i];
+	}
+}
+
+void MovingAvg(float arrayvalue[],int arraySize)
+{
+	int i=0;
+	float avg=0;
+	int j=0,k=0;
+	float Average[30]={};
+
+	for(i=0;i<arraySize;i++)
+	{
+		j++;
+		if(j%5==0)
+		{
+			avg=arrayvalue[i]+arrayvalue[i-1]+arrayvalue[i-2]+arrayvalue[i-3]+arrayvalue[i-4];
+			avg=(float)avg/5.00;
+			j--;
+			Average[k]=avg;
+			k++;
+		}
+
+	}
+
+}
+
+
 int main()
 {
 	readfromConsole();
+	findMinMax(Temperature);
+	findMinMax(SOC);
+	MovingAvg(Temperature,30);
 	return 0;
 }
