@@ -104,8 +104,8 @@ void MovingAvg(float arrayvalue[],int arraySize)
 int main()
 {
 	readfromConsole();
-	findMinMax(Temperature);
-	findMinMax(SOC);
-	MovingAvg(Temperature,30);
+	// findMinMax(Temperature);
+	// findMinMax(SOC);
+	// MovingAvg(Temperature,30);
 	return 0;
 }
