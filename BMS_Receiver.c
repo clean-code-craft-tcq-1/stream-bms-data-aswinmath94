@@ -10,6 +10,8 @@
 void readfromConsole(void)
 {
 	char input[1024];
+	float Temperature[30]={};
+	float SOC[300={};
 	int i,j=0;
 	int paramindex=0
 	const char * InputArray[] = {
@@ -19,7 +21,7 @@ void readfromConsole(void)
 
    while (scanf("%s\n", input) !=EOF) 
    {
-	   if ( (intput== InputArray[0])|| (intput== InputArray[1]))
+	   if ( (input== InputArray[0])|| (input== InputArray[1]))
 	   {
 		   printf("the value of the character is %s\n", input);
 	    continue;
@@ -27,7 +29,7 @@ void readfromConsole(void)
 	   else
 	   {
 		   
-			   i = strlen(valuefromsender);
+			   i = strlen(input);
                InputArray[i] = '\n';
                InputArray[i + 1] = '\0';
 		   if(paramindex%1!=0)
