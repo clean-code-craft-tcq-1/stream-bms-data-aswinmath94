@@ -39,7 +39,9 @@ jobs:
        
       # Runs a single command using the runners shell
     - name: Console Redirect
-      run: python ./test_BMS_datastream.py > Fileoutput.txt
+      run: | 
+       g++ -Wall -Wextra -fprofile-arcs -ftest-coverage -o testchecker *.c*
+       python ./test_BMS_datastream.py | ./testchecker
        
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
