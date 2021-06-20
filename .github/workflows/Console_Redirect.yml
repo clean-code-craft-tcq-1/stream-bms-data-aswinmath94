@@ -43,7 +43,7 @@ jobs:
       # Runs a single command using the runners shell
      - name: Console Redirect
        run:  |
-         cd..
+         cd ..
          cp test_BMS_datastream.py /usr/bin/test_BMS_datastream.py
          python /usr/bin/test_BMS_datastream.py > sudo output.txt
        
