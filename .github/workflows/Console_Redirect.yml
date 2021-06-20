@@ -38,10 +38,13 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings.
         flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
-         
+       
+     - name: Copy the absolute path
+       run: COPY test_BMS_datastream.py /usr/bin/test_BMS_datastream.py
+       
       # Runs a single command using the runners shell
      - name: Console Redirect
-       run: python test_BMS_datastream.py > sudo output.txt
+       run: python /usr/bin/test_BMS_datastream.py > sudo output.txt
        
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
