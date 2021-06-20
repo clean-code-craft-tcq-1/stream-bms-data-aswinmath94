@@ -44,7 +44,7 @@ jobs:
      - name: Console Redirect
        run: |
         cd ..
-        python /test_BMS_datastream.py > sudo output.txt
+        python test_BMS_datastream.py > sudo output.txt
        
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
