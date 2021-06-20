@@ -11,13 +11,12 @@ void readfromConsole(void)
 {
 	char input[1024];
 	float Temperature[30]={};
-	float SOC[300={};
+	float SOC[30]={};
 	int i,j=0;
-	int paramindex=0
+	int paramindex=0;
 	const char * InputArray[] = {
     "{'temperature':",
-    "'soc':"
-};
+    "'soc':" };
 
    while (scanf("%s\n", input) !=EOF) 
    {
