@@ -11,7 +11,7 @@ void readfromConsole(void)
 {
 	char input[1024];
 
-   while (1 == scanf("%[^\n]%s", input)) {
+   while (1 == scanf("%[^\n]s", input)) {
         printf("the value of the input is %s\n", input); /* The input was not a blank line */
    }
 	
