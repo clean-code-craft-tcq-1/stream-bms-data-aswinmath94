@@ -42,11 +42,11 @@ jobs:
        
       # Runs a single command using the runners shell
     - name: Console Redirect
-      run: python ./bms_input_handler.py > sudo output.txt
+      run: python ./test_BMS_datastream.py > Fileoutput.txt
        
     - name: 'Upload Artifact'
       uses: actions/upload-artifact@v2
       with:
-        name: output
+        name: Fileoutput
         path: ./*.txt
         retention-days: 1
