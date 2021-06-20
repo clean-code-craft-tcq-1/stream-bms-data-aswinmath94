@@ -29,17 +29,17 @@ void readfromConsole(void)
 	   {
 		   
 			   i = strlen(input);
-               InputArray[i] = '\n';
-               InputArray[i + 1] = '\0';
+               input[i] = '\n';
+               input[i + 1] = '\0';
 		   if(paramindex%1!=0)
 		   {
-			   Temperature[j]= atof(InputArray);
+			   Temperature[j]= atof(input);
 			   printf("the value of the temp is %s\n", input);
 			   paramindex++;
 		   }
 		   else 
 		   {
-			   SOC[j]=atof(InputArray);
+			   SOC[j]=atof(input);
 			   printf("the value of the SOC is %s\n", input);
 			   paramindex=0;
 		   }
