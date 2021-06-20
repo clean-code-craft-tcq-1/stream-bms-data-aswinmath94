@@ -15,7 +15,7 @@ void readfromConsole(void)
     "'soc':"
 };
 
-   while (scanf("%s", input) !=EOF) {
+   while (scanf("%s\n", input) !=EOF) {
 	    
         printf("the value of the input is %s\n", input); 
    }
