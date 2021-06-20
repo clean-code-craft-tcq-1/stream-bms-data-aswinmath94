@@ -43,7 +43,7 @@ jobs:
       # Runs a single command using the runners shell
      - name: Console Redirect
        run: |
-        cd /
+        sudo cd /
         python test_BMS_datastream.py > sudo output.txt
        
      - name: 'Upload Artifact'
