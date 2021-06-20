@@ -40,11 +40,14 @@ jobs:
         flake8 . --count --exit-zero --max-line-length=80 --ignore=E111,E121,E126 --statistics
        
      - name: Copy the absolute path
-       run: COPY test_BMS_datastream.py /usr/bin/test_BMS_datastream.py
+       run:  |
+          ls -la
+          cd ./test_BMS_datastream.py
+          ls -la
        
       # Runs a single command using the runners shell
      - name: Console Redirect
-       run: python /usr/bin/test_BMS_datastream.py > sudo output.txt
+       run: python test_BMS_datastream.py > sudo output.txt
        
      - name: 'Upload Artifact'
        uses: actions/upload-artifact@v2
