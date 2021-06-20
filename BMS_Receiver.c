@@ -18,8 +18,8 @@
 void readfromConsole(void)
 {
 	char input[1024];
-	float Temperature[30]={};
-    float SOC[30]={};
+	float Temperature[100]={};
+    float SOC[100]={};
 	int i,j,k=0;
 	static int paramindex=0;
 	int Result,Result1=0;
