@@ -33,16 +33,16 @@ void readfromConsole(void)
 			   i = strlen(input);
                input[i-1] = '\0';
                // input[i + 1] = '\0';
-		   if(paramindex%1!=0)
+		   if(paramindex%2==0)
 		   {
 			   Temperature[j]= atof(input);
-			   printf("the value of the temp is %s\n", input);
+			   printf("the value of the temp is %f\n", Temperature[j]);
 			   paramindex++;
 		   }
 		   else 
 		   {
 			   SOC[j]=atof(input);
-			   printf("the value of the SOC is %s\n", input);
+			   printf("the value of the SOC is %f\n", SOC[j]);
 			   paramindex=0;
 		   }
 		   j++;
