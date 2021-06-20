@@ -18,11 +18,11 @@
 void readfromConsole(void)
 {
 	char input[1024];
-	float Temperature[100]={};
-    float SOC[100]={};
+	float Temperature[1024]={};
+    float SOC[1024]={};
 	int i,j,k=0;
-	static int paramindex=0;
-	int Result,Result1=0;
+	// static int paramindex=0;
+	int paramindex,Result,Result1=0;
 	const char * InputArray[] = {
     "{'temperature':",
     "'soc':" };
@@ -42,7 +42,7 @@ void readfromConsole(void)
 			   i = strlen(input);
                input[i-1] = '\0';
                // input[i + 1] = '\0';
-		   if(paramindex%2==0)
+		   if(paramindex % 2==0)
 		   {
 			   Temperature[j]= atof(input);
 			   printf("the value of the temp is %f\n", Temperature[j]);
