@@ -84,7 +84,7 @@ void MovingAvg(float arrayvalue[],int arraySize)
 	int i=0;
 	float avg=0;
 	int j=0,k=0;
-	float average[102]={};
+	float average[1024]={};
 
 	for(i=0;i<arraySize;i++)
 	{
