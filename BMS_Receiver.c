@@ -10,9 +10,14 @@
 void readfromConsole(void)
 {
 	char input[1024];
+	const char * InputArray[] = {
+    "{'temperature':",
+    "'soc':"
+};
 
-   while (1 == scanf("%[^\n]s", input)) {
-        printf("the value of the input is %s\n", input); /* The input was not a blank line */
+   while (scanf("%s", input) !=EOF) {
+	    
+        printf("the value of the input is %s\n", input); 
    }
 	
 
