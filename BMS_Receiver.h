@@ -7,6 +7,7 @@ typedef struct
 	float max;
 }minMax_st;
 
+#define MAX_SIZE_TO_READ 400
 extern int lengthOfInputData;
 void FindMaxValue(float InputReading[]);
 void FindMinValue(float InputReading[]);

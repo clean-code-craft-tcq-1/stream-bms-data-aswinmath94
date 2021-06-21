@@ -8,8 +8,14 @@
 int lengthOfInputData=0;
 minMax_st minMax_data;
 
+typdef enum
+{
+	ToFindMinValue,
+	ToFindMaxvalue
+}UserRequestMinMax_e;
 
-void (*FindMinMaxofInput[2])(float InputReading[])={FindMinValue,FindMaxValue};
+UserRequestMinMax_e UserRequestMinMax;
+void (*FindMinMaxofInput[])(float InputReading[],UserRequestMinMax_e UserRequestMinMax)={FindMinValue,FindMaxValue};
 
 void readfromConsole(float *Temperature, float *SOC)
 {
@@ -120,8 +126,10 @@ void MovingAvg(float arrayvalue[])
 
 int main()
 {
-	static float Temperature[]={0};
-	static float SOC[]={0};
+    float Temperature[MAX_SIZE_TO_READ]={0};
+    float SOC[MAX_SIZE_TO_READ]={0};
+
+	
 	readfromConsole(Temperature,SOC );
 	for (int i=0;i< lengthOfInputData;i++)
 	{
@@ -130,10 +138,10 @@ int main()
 	}
 	
 	
-	(*FindMinMaxofInput[0])(Temperature);
-	(*FindMinMaxofInput[1])(Temperature);
-	(*FindMinMaxofInput[0])(SOC);
-	(*FindMinMaxofInput[1])(SOC);
+	(*FindMinMaxofInput[UserRequestMinMax.ToFindMinValue])(Temperature);
+	(*FindMinMaxofInput[UserRequestMinMax.ToFindMaxValue])(Temperature);
+	(*FindMinMaxofInput[UserRequestMinMax.ToFindMinValue])(SOC);
+	(*FindMinMaxofInput[UserRequestMinMax.ToFindMaxValue])(SOC);
     
     MovingAvg(Temperature);
 	MovingAvg(SOC);
