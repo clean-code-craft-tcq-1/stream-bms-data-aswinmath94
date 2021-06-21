@@ -127,14 +127,12 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
     if(paramindex % 2==0)
     {
  	   Temperature[Temperature_index]= strtod(InputData,NULL);
-	   printf("the value of the temp is %0.6f\n", Temperature[Temperature_index]);
 	   Temperature_index++;
 	   BatteryDataReady=Success;
     }
     else 
     {
 	   SOC[SOC_index]=strtod(InputData,NULL);
-	   printf("the value of the SOC is %0.6f\n", SOC[SOC_index]);
 	   SOC_index++;
 	   lengthOfInputData++;
 	   BatteryDataReady=Success;
@@ -199,7 +197,6 @@ ResultType FindMaxValue(float InputReading[] )
 			minMax_data.max=InputReading[Loop_index];
 		FoundMaxValue=Success;
 	}
-	printf("the value of the max is %f\n", minMax_data.max);
 	return FoundMaxValue;
 }
 /**
@@ -258,8 +255,8 @@ ResultType FindMovingAverage(float InputArray[], int lengthofData, float OutputA
 ResultType PrintToConsole( float PrintData[],PrintingData DataToPrint)
 {
 	 ResultType PrintedToConsole= Failure;
-	 printf( " The Maximum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max );
-	 printf( " The Minimum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min );
+	 printf( " The Maximum value of the %s data received is %f \n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max );
+	 printf( " The Minimum value of the %s data received is %f \n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min );
 	
 	 for(int Loopcount=0; (LengthofData>=5)&&(Loopcount<LengthofData);Loopcount++)
 	 {
