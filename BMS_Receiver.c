@@ -3,19 +3,24 @@
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 
 typedef struct
 {
 	float min;
 	float max;
-}minMax;
+}minMax_st;
 
-
+// typedef struct
+// {
+	// Temperature;
+	// SOC;
+// }Typeofdata_st;
 	
-minMax minMax1;
+minMax_st minMax_data;
+// Typeofdata_st TypeOfData;
 
+void (*FindMinMaxofInput[])(float InputReading[],int numberOfReadings)={FindMinValue,FindMaxValue};
 
 void readfromConsole(float Temperature[], float SOC[])
 {
@@ -64,18 +69,33 @@ void readfromConsole(float Temperature[], float SOC[])
 
 }
 
+void FindMinMaxvalue(, )
+{
+	int loop_index=0;
+	
+	
+}
 
-void findMinMax(float arrayvalue[])
+void FindMinValue(float InputReading[], int numberOfReadings)
 {
 
-	int i=0;
-	minMax1.min=minMax1.max=arrayvalue[0];
-	for(i=1; i<10; i++)
+	int Loop_index=0;
+	minMax_data.min=InputReading[0];
+	for(Loop_index=1; Loop_index<numberOfReadings; Loop_index++)
 	{
-		if(minMax1.min>arrayvalue[i])
-			minMax1.min=arrayvalue[i];
-		if(minMax1.max<arrayvalue[i])
-			minMax1.max=arrayvalue[i];
+		if(minMax_data.min>InputReading[Loop_index])
+			minMax_data.min=InputReading[Loop_index];
+	}
+}
+
+void FindMaxValue(float InputReading[], int numberOfReadings)
+{
+	int Loop_index=0;
+	minMax_data.max=InputReading[0];
+	for(Loop_index=1; Loop_index<numberOfReadings; Loop_index++)
+	{
+		if(minMax_data.max<InputReading[Loop_index])
+			minMax_data.max=InputReading[Loop_index];
 	}
 }
 
@@ -104,11 +124,17 @@ void MovingAvg(float arrayvalue[],int arraySize)
 
 int main()
 {
-	float Temperature[1024]={0};
-	float SOC[1024]={0};
+	float Temperature[]={0};
+	float SOC[]={0};
+	int numberOfReadings=0;
 	readfromConsole(Temperature,SOC );
-    findMinMax(Temperature);
-    findMinMax(SOC);
-    MovingAvg(Temperature,30);
+	numberOfReadings= sizeof(Temperature) / sizeof(Temperature[0]);
+	(*FindMinMaxofInput[0])(Temperature,numberOfReadings);
+	(*FindMinMaxofInput[1])(Temperature,numberOfReadings);
+	(*FindMinMaxofInput[0])(SOC,numberOfReadings);
+	(*FindMinMaxofInput[1])(SOC,numberOfReadings);
+    
+    MovingAvg(Temperature,numberOfReadings);
+	MovingAvg(SOC,numberOfReadings);
 	return 0;
 }
