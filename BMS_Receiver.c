@@ -134,16 +134,16 @@ ResultType FindMaxValue(float InputReading[])
 
 ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 {
-	static int Loop_counter=0;
-	static int m=0;
+    int Loop_counter=0;
+    int m=0;
 	ResultType FoundMovingAverage= Failure;
 	float avg=0;
-    static int Modvalue=0;
-	static int Array_index=0;
-    float average[1024]={};
+    int Modvalue=0;
+    int Array_index=0;
+    float average[MAX_SIZE_TO_READ-5]={};
 
 
-    for(; (lengthofData>=5)&&(Loop_counter<lengthofData);Loop_counter++)
+    for(Loop_counter=0; (lengthofData>=5)&&(Loop_counter<lengthofData);Loop_counter++)
 	 {
 		Modvalue++;
 		if(Modvalue%5==0)
@@ -158,7 +158,7 @@ ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 		}
 
 	 }
-	 for(; (lengthofData>=5)&&(m<lengthofData);m++)
+	 for(m=0; (lengthofData>=5)&&(m<lengthofData);m++)
 	 {
         printf("the value of the average is %f\n", average[m]);
 	 }
