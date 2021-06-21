@@ -12,6 +12,8 @@ float SOC[MAX_SIZE_TO_READ]={};
 
 ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
 
+
+
 ResultType FindMinandMaxValue(float InputReading[], UserRequestOperation UserRequestOperator)
 {
 	ResultType UserRequestSuccess= Failure;
@@ -77,6 +79,8 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 	   BatteryDataReady=Success;
     }
     paramindex++;
+	(void)FindMovingAverage(float Temperature[]);
+	(void)FindMovingAverage(float SOC[]);
     return BatteryDataReady;
 		   
 }
@@ -115,30 +119,47 @@ ResultType FindMaxValue(float InputReading[])
 
 ResultType FindMovingAverage(float arrayvalue[])
 {
-	int Loop_counter=0;
+	static int Loop_counter=0;
 	ResultType FoundMovingAverage= Failure;
 	float avg=0;
 	int Modvalue=0,Array_index=0;
 	float average[1024]={};
-
-	for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
+	float sum;
+	
+	if (lengthOfInputData>=5)
 	{
-		Modvalue++;
-		if(Modvalue%5==0)
-		{
-			avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
-			avg=(float)avg/5.00;
-			Modvalue--;
-			average[Array_index]=avg;
-			Array_index++;
-			FoundMovingAverage=Success;
-			
+		for(int i = 0; i < 5; i++)
+            sum += arrayvalue[i];
+		average[0] = sum/5;
+    
+		int j = 1;   
+		for(int i = 5; i < lengthOfInputData; i++){
+			 sum = sum+arrayvalue[i]-arrayvalue[i-5];
+			 average[j++] = sum/5;
 		}
+	// for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
+	// {
+		// Modvalue++;
+		// if(Modvalue%5==0)
+		// {
+			// avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
+			// avg=(float)avg/5.00;
+			// Modvalue--;
+			// average[Array_index]=avg;
+			// Array_index++;
+			// FoundMovingAverage=Success;
+			
+		// }
 
-	}
-	for (int m=0; m<lengthOfInputData; m++)
-	{
-		printf("the value of the average is %f\n", average[m]);
-	}
+	// }
+ for (int m=0; m<lengthOfInputData; m++)
+ {
+	 printf("the value of the average is %f\n", average[m]);
+ }
+	
+
+    }
+	
+	
 	return FoundMovingAverage;
 }
