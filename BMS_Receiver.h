@@ -27,4 +27,3 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 ResultType ProcessReadData(char *InputData, float Temperature[], float SOC[]);
 ResultType FindMovingAverage(float arrayvalue[]);
 ResultType readfromConsole(float Temperature[], float SOC[]);
-ResultType (*FindMinMaxofInput[2])(float InputReading[]);
