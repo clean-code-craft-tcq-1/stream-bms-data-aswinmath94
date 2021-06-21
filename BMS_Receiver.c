@@ -117,7 +117,7 @@ void MovingAvg(float *arrayvalue)
 		}
 
 	}
-	for (int m=0; m<arraySize; m++)
+	for (int m=0; m<lengthOfInputData; m++)
 	{
 		printf("the value of the average is %f\n", average[m]);
 	}
