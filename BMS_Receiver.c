@@ -48,8 +48,8 @@ void ProcessReadData(char *InputData, float *Temperature, float *SOC)
 void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SOC)
 {
 	int InputStringlen=0;
-	int Temperature_index=0;
-	int SOC_index=0;
+	static int Temperature_index=0;
+	static int SOC_index=0;
 	static int paramindex=0;
 	
 		   InputStringlen = strlen(InputData);
