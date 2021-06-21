@@ -65,7 +65,7 @@ This section lists the minimum functionality of the Sender and Receiver.
 - can either generate random values for the parameters, or read from a file
 - uses console output to communicate the parameters.
 
-**_Author: Padmashree D J _**
+**Author: Padmashree D J **
 ### The Receiver
 
 _Requirement ID:1_  - reads the parameters from the console input
@@ -80,9 +80,10 @@ _Requirement ID:2b_ - [simple moving average](https://www.investopedia.com/terms
 
 Setup the quality parameters of your project (duplication, complexity, coverage, warnings) using the GitHub workflow yml files.
 
-**Author: Padmashree D J
+**Author: Padmashree D J**
 
-**Interface Assumptions:-
+**Interface Assumptions:-**
+
 - Receiver takes the console output of sender as input.
 - Receiver will not take any action until there is no input data.
 - Receiver would read a maximum of 400 entry of BMS temperature and SOC data.
