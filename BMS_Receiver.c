@@ -145,7 +145,7 @@ ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 		}
 
 	 }
-	  for (int m=0; m<lengthOfInputData; m++)
+	  for (int m=0;(lengthofData>=5)&& m<lengthofData; m++)
 	  {
 		  printf("the value of the average is %f\n", average[m]);
 	  }
