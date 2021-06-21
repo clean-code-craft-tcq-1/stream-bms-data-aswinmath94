@@ -50,7 +50,7 @@ void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SO
 	int InputStringlen=0;
 	int Temperature_index=0;
 	int SOC_index=0;
-	int paramindex=0;
+	static int paramindex=0;
 	
 		   InputStringlen = strlen(InputData);
 		   InputData[InputStringlen-1] = '\0';
