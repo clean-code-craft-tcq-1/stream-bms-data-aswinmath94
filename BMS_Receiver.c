@@ -13,7 +13,20 @@ float SOC[MAX_SIZE_TO_READ]={};
 ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
 
 
-
+/**
+ ***************************************************************************************************
+ * Function Name: FindMinandMaxValue
+ * 
+ * Function Description: Finds the Minimum or maximum value of the input array passed in the argument depending on the value of UserRequestOperator.
+ *
+ * \param  float InputReading[] :- array to find the Min or Max.
+ *         UserRequestOperation UserRequestOperator:- UserRequestOperator= ToFindMinValue finds the minimum value , UserRequestOperator= ToFindMaxValue finds the maximum value.
+ *   
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execsution status of Requested operation.
+ ***************************************************************************************************
+ */
 ResultType FindMinandMaxValue(float InputReading[], UserRequestOperation UserRequestOperator)
 {
 	ResultType UserRequestSuccess= Failure;
@@ -70,7 +83,6 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
  	   Temperature[Temperature_index]= strtod(InputData,NULL);
 	   printf("the value of the temp is %0.6f\n", Temperature[Temperature_index]);
 	   Temperature_index++;
-	   (void)FindMovingAverage(Temperature, Temperature_index);
 	   BatteryDataReady=Success;
     }
     else 
@@ -79,7 +91,6 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 	   printf("the value of the SOC is %0.6f\n", SOC[SOC_index]);
 	   SOC_index++;
 	   lengthOfInputData++;
-	   (void)FindMovingAverage(SOC,SOC_index);
 	   BatteryDataReady=Success;
     }
     paramindex++;
@@ -148,6 +159,8 @@ ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 
 	 }
 	 for(; (lengthofData>=5)&&(m<lengthofData);m++)
-     printf("the value of the average is %f\n", average[m]);
+	 {
+        printf("the value of the average is %f\n", average[m]);
+	 }
 	return FoundMovingAverage;
 }
