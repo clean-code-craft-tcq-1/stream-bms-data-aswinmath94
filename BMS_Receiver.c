@@ -3,17 +3,25 @@
 #include <string.h>
 #include "BMS_Receiver.h"
 
+/*Global Definitions*/
 int lengthOfInputData=0;
 minMax_st minMax_data;
+
+/*Global array to hold Temperature and SOC value*/
 float Temperature[MAX_SIZE_TO_READ]={};
 float SOC[MAX_SIZE_TO_READ]={};
 
+/*Array of function pointers for Finding Min and Max Value*/
 ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
+
+/*To cascade battery data in print information*/
 const char *BatteryMessage[] =
 {
     "Temperature",
     "State Of Charge"
 };
+
+/*Function Definitions*/
 
 /**
  ***************************************************************************************************

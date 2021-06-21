@@ -5,45 +5,13 @@
 
 
 /*Positive test case */
-TEST_CASE("Case for Postive test case :- Success of Data readFromConsole") {
+TEST_CASE("Requirement ID:1: Case for Postive test case :- To read Data from console") {
 
   REQUIRE(readfromConsole(Temperature, SOC) == Success);
 }
-/*Positive test case */
-TEST_CASE("Case for Positive test case :-Success of finding temperature array Minimum value") {
-	UserRequestOperation Operator= ToFindMinValue;
-    REQUIRE(FindMinandMaxValue(Temperature,Operator) == Success);
-}
 
 /*Positive test case */
-TEST_CASE("Case for Positive test case :-Success of finding SOC array Minimum value") {
-  UserRequestOperation Operator= ToFindMinValue;
-  REQUIRE(FindMinandMaxValue(SOC,Operator) == Success);
-}
-
-/*Positive test case */
-TEST_CASE("Case for Positive test case:-Success of finding Temperature array Maximum value value") {
-  UserRequestOperation Operator= ToFindMaxValue;
-  REQUIRE(FindMinandMaxValue(Temperature,Operator )  == Success);
-}
-
-/*Positive test case */
-TEST_CASE("Case for Positive test case:-Success of finding SOC array Maximum value value") {
-  UserRequestOperation Operator= ToFindMaxValue;
-  REQUIRE(FindMinandMaxValue(SOC,Operator)  == Success);
-}
-
-TEST_CASE("Case for evaluating success of Moving average of temperature") {
-  float OutputAveragearray[lengthOfInputData]={};
-  REQUIRE(FindMovingAverage(Temperature,lengthOfInputData,OutputAveragearray) == Success);
-}
-
-TEST_CASE("Case for evaluating success of Moving average of SOC") {
-  float OutputAveragearray[lengthOfInputData]={};
-  REQUIRE(FindMovingAverage(SOC,lengthOfInputData,OutputAveragearray) == Success);
-}
-
-TEST_CASE("Case for evaluating Printing to console:Temperature:Minimum,Maximum, Moving Average") 
+TEST_CASE("Requirement ID:2 Case for evaluating Printing to console for Temperature, after finding:Requirement ID:2a:- Minimum,Maximum, Requirement ID:2b:- Moving Average of 5") 
 {
 	float OutputAveragearray[lengthOfInputData]={};
 	PrintingData DataToPrint;
@@ -57,7 +25,8 @@ TEST_CASE("Case for evaluating Printing to console:Temperature:Minimum,Maximum, 
     REQUIRE(PrintToConsole(OutputAveragearray,DataToPrint) == Success);
 }
 
-TEST_CASE("Case for evaluating Printing to console:SOC:Minimum,Maximum, Moving Average") 
+/*Positive test case */
+TEST_CASE("Requirement ID:2: Case for evaluating Printing to console for State Of charge, after finding:Requirement ID:2a:- Minimum,Maximum, Requirement ID:2b:- Moving Average of 5")  
 {
 	float OutputAveragearray[lengthOfInputData]={};
 	PrintingData DataToPrint;

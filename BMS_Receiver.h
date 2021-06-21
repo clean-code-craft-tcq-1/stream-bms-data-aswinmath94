@@ -1,3 +1,6 @@
+#ifndef __BMS_RECEIVER_H
+#define __BMS_RECEIVER_H
+
 #include <stdio.h>
 
 
@@ -43,3 +46,5 @@ ResultType FindMovingAverage(float arrayvalue[],int lengthofData,float OutputAve
 ResultType readfromConsole(float Temperature[], float SOC[]);
 ResultType FindMinandMaxValue(float InputReading[], UserRequestOperation UserRequestOperator);
 ResultType PrintToConsole( float PrintData[],PrintingData DataToPrint);
+
+#endif
