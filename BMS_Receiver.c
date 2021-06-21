@@ -15,9 +15,9 @@ typedef struct
 minMax_st minMax_data;
 
 
-void (*FindMinMaxofInput[])(float InputReading[],int numberOfReadings)={FindMinValue,FindMaxValue};
+void (*FindMinMaxofInput[])(float *InputReading,int numberOfReadings)={FindMinValue,FindMaxValue};
 
-void readfromConsole(float Temperature[], float SOC[])
+void readfromConsole(float *Temperature, float *SOC)
 {
 	char InputData[1024];
 	
@@ -27,7 +27,7 @@ void readfromConsole(float Temperature[], float SOC[])
    }
 }
 
-void ProcessReadData(char *InputData, float Temperature[], float SOC[])
+void ProcessReadData(char *InputData, float *Temperature, float *SOC)
 {
 	int ResultComparetemp,ResultCompareSOC=0;
 	const char * InputArray_Dontprocess[] = {
@@ -45,7 +45,7 @@ void ProcessReadData(char *InputData, float Temperature[], float SOC[])
 	   }
 }  
 
-void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[])
+void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SOC)
 {
 	int InputStringlen=0;
 	int Temperature_index=0;
@@ -71,7 +71,7 @@ void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SO
 }
 
 
-void FindMinValue(float InputReading[], int numberOfReadings)
+void FindMinValue(float *InputReading, int numberOfReadings)
 {
 
 	int Loop_index=0;
@@ -83,7 +83,7 @@ void FindMinValue(float InputReading[], int numberOfReadings)
 	}
 }
 
-void FindMaxValue(float InputReading[], int numberOfReadings)
+void FindMaxValue(float *InputReading, int numberOfReadings)
 {
 	int Loop_index=0;
 	minMax_data.max=InputReading[0];
