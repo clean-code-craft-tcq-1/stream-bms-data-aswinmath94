@@ -27,7 +27,7 @@ void readfromConsole(float Temperature[], float SOC[])
    }
 }
 
-void ProcessReadData(char InputData[], float Temperature[], float SOC[])
+void ProcessReadData(char *InputData, float Temperature[], float SOC[])
 {
 	int ResultComparetemp,ResultCompareSOC=0;
 	const char * InputArray_Dontprocess[] = {
@@ -45,7 +45,7 @@ void ProcessReadData(char InputData[], float Temperature[], float SOC[])
 	   }
 }  
 
-void ExtractBatteryData_FromInput(char InputData[], float Temperature[], float SOC[])
+void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[])
 {
 	int InputStringlen=0;
 	int Temperature_index=0;
