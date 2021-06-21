@@ -120,8 +120,8 @@ void MovingAvg(float arrayvalue[])
 
 int main()
 {
-	float Temperature[300]={0};
-	float SOC[300]={0};
+	static float Temperature[]={0};
+	static float SOC[]={0};
 	readfromConsole(Temperature,SOC );
 	for (int i=0;i< lengthOfInputData;i++)
 	{
