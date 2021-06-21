@@ -37,7 +37,7 @@ void ProcessReadData(char InputData[], float Temperature[], float SOC[])
 	   ResultCompareSOC= strcmp(InputData, InputArray_Dontprocess[1]);
 	   if(( ResultComparetemp ==0) || (ResultCompareSOC ==0))
 	   {
-		  continue;
+		  //do nothing
   	   }
 	   else
 	   {
@@ -119,8 +119,8 @@ void MovingAvg(float arrayvalue[],int arraySize)
 
 int main()
 {
-	float Temperature[]={0};
-	float SOC[]={0};
+	float Temperature[]={};
+	float SOC[]={};
 	int numberOfReadings=0;
 	readfromConsole(Temperature,SOC );
 	numberOfReadings= sizeof(Temperature) / sizeof(Temperature[0]);
