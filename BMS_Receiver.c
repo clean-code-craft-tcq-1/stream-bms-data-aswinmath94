@@ -132,7 +132,7 @@ int main()
 	readfromConsole(Temperature,SOC );
 	for (int i=0;i< lengthOfInputData;i++)
 	{
-	   printf("the value of the temp in main is %f\n", Temperature[i]);
+	   printf("the value of the temp in main is %0.6f\n", Temperature[i]);
 	   printf("the value of the SOC in main is %f\n", SOC[i]);
 	}
 	
