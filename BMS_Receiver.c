@@ -8,7 +8,7 @@
 int lengthOfInputData=0;
 minMax_st minMax_data;
 
-void (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
+ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
 
 
 ResultType readfromConsole(float Temperature[], float SOC[])

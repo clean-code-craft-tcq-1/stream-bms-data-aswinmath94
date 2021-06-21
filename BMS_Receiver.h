@@ -21,10 +21,10 @@ extern float Temperature[MAX_SIZE_TO_READ];
 extern float SOC[MAX_SIZE_TO_READ];
   
 extern int lengthOfInputData;
-void FindMaxValue(float InputReading[]);
-void FindMinValue(float InputReading[]);
-void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[]);
-void ProcessReadData(char *InputData, float Temperature[], float SOC[]);
-void FindMovingAverage(float arrayvalue[]);
-void readfromConsole(float Temperature[], float SOC[]);
-void (*FindMinMaxofInput[])(float InputReading[]);
+ResultType FindMaxValue(float InputReading[]);
+ResultType FindMinValue(float InputReading[]);
+ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[]);
+ResultType ProcessReadData(char *InputData, float Temperature[], float SOC[]);
+ResultType FindMovingAverage(float arrayvalue[]);
+ResultType readfromConsole(float Temperature[], float SOC[]);
+ResultType (*FindMinMaxofInput[2])(float InputReading[]);
