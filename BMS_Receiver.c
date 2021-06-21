@@ -219,7 +219,6 @@ ResultType FindMaxValue(float InputReading[] )
 ResultType FindMovingAverage(float InputArray[], int lengthofData, float OutputAveragearray[])
 {
     int Loop_counter=0;
-    int m=0;
 	ResultType FoundMovingAverage= Failure;
 	float avg=0;
     int Modvalue=0;
@@ -230,7 +229,7 @@ ResultType FindMovingAverage(float InputArray[], int lengthofData, float OutputA
 		Modvalue++;
 		if(Modvalue%5==0)
 		{
-			avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
+			avg=InputArray[Loop_counter]+InputArray[Loop_counter-1]+InputArray[Loop_counter-2]+InputArray[Loop_counter-3]+InputArray[Loop_counter-4];
 			avg=(float)avg/5.00;
 		    Modvalue--;
 		    OutputAveragearray[Array_index]=avg;
@@ -256,11 +255,11 @@ ResultType FindMovingAverage(float InputArray[], int lengthofData, float OutputA
  * \retval  Success or failure indicating execution status of Printing to console.
  ***************************************************************************************************
  */
-ReturnType PrintToConsole( float PrintData[],PrintingData DataToPrint)
+ResultType PrintToConsole( float PrintData[],PrintingData DataToPrint)
 {
 	 ResultType PrintedToConsole= Failure;
-	 printf( " The Maximum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max };
-	 printf( " The Minimum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min };
+	 printf( " The Maximum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max );
+	 printf( " The Minimum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min );
 	
 	 for(int Loopcount=0; (LengthofData>=5)&&(Loopcount<LengthofData);Loopcount++)
 	 {

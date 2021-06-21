@@ -42,4 +42,4 @@ ResultType ProcessReadData(char *InputData, float Temperature[], float SOC[]);
 ResultType FindMovingAverage(float arrayvalue[],int lengthofData,float OutputAveragearray[]);
 ResultType readfromConsole(float Temperature[], float SOC[]);
 ResultType FindMinandMaxValue(float InputReading[], UserRequestOperation UserRequestOperator);
-ReturnType PrintToConsole( float PrintData[],PrintingData DataToPrint);
+ResultType PrintToConsole( float PrintData[],PrintingData DataToPrint);

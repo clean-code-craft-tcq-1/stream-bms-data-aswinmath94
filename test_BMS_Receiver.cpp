@@ -34,13 +34,13 @@ TEST_CASE("Case for Positive test case:-Success of finding SOC array Maximum val
 }
 
 TEST_CASE("Case for evaluating success of Moving average of temperature") {
-
-  REQUIRE(FindMovingAverage(Temperature,lengthOfInputData) == Success);
+  float OutputAveragearray[lengthOfInputData]={};
+  REQUIRE(FindMovingAverage(Temperature,lengthOfInputData,OutputAveragearray) == Success);
 }
 
 TEST_CASE("Case for evaluating success of Moving average of SOC") {
-
-  REQUIRE(FindMovingAverage(SOC,lengthOfInputData) == Success);
+  float OutputAveragearray[lengthOfInputData]={};
+  REQUIRE(FindMovingAverage(SOC,lengthOfInputData,OutputAveragearray) == Success);
 }
 
 TEST_CASE("Case for evaluating Printing to console:Temperature:Minimum,Maximum, Moving Average") 
