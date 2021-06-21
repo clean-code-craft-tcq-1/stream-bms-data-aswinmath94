@@ -77,19 +77,22 @@ _Requirement ID:2a_ - maximum and minimum values in the incoming stream
 
 _Requirement ID:2b_ - [simple moving average](https://www.investopedia.com/terms/s/sma.asp) of the last 5 values
 
-## Quality Parameters
-
-Setup the quality parameters of your project (duplication, complexity, coverage, warnings) using the GitHub workflow yml files.
-
 #### Author: Padmashree D J
 
 ## Interface Assumptions:-
 
+- Integration of Sender | Receiver is done. 
 - Receiver takes the console output of sender as input.
-- Receiver will not take any action until there is no input data.
+- Receiver will not take any action until there is no input data. Not able to capture in test case as there is always data on console due to piping action.
 - Receiver would read a maximum of 400 entry of BMS temperature and SOC data.
 - Sender sends the data in the format of "{'temperature':22.4, 'soc':56.7}"
 - Receiver will print the minimum and maximum value of the read value of temperature and SOC data.
 - Receiver finds moving average of 5 for Battery data.
 - Receiver can only make sure operations of performing Minimum and maximum value and moving average value is operated.
 - Receiver process cannot validate Minimum and maximum value and moving average value against the a definite value as the Data received is random.
+
+## Quality Parameters
+
+- Duplication :- No duplication above 3 lines set in Github workflow yml file
+- Complexity  :- Complexity metrics CCN is limited to value 3 set in Github workflow yml file.
+- Coverage    :- Code coverage is aimed at above 90%.
