@@ -1,5 +1,3 @@
-
-
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
@@ -205,7 +203,7 @@ ResultType FindMaxValue(float InputReading[] )
  * 
  * Function Description: Extract the float value after segragating string data
  *
- * \param  float arrayvalue[] :-  Dataarray on which moving average needs to be found
+ * \param  float InputArray[] :-  Dataarray on which moving average needs to be found
  *         int lengthofData:- Length of data on which moving average needs to be found.
  *         float OutputAveragearray[]:-  Output parameter : Averaged data is output
  *         
@@ -221,7 +219,7 @@ ResultType FindMovingAverage(float InputArray[], int lengthofData, float OutputA
     int Modvalue=0;
     int Array_index=0;
 
-    for(Loop_counter=0; (lengthofData>=5)&&(Loop_counter<lengthofData);Loop_counter++)
+    for(Loop_counter=0; Loop_counter<lengthofData;Loop_counter++)
 	 {
 		Modvalue++;
 		if(Modvalue%5==0)
@@ -258,7 +256,7 @@ ResultType PrintToConsole( float PrintData[],PrintingData DataToPrint)
 	 printf( " The Maximum value of the %s data received is %f \n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max );
 	 printf( " The Minimum value of the %s data received is %f \n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min );
 	
-	 for(int Loopcount=0; (LengthofData>=5)&&(Loopcount<LengthofData);Loopcount++)
+	 for(int Loopcount=0; Loopcount< DataToPrint.lengthOfInputData;Loopcount++)
 	 {
         printf("The value of the average of %s is %f\n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],PrintData[Loopcount]);
 	 }
