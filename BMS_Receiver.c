@@ -11,11 +11,11 @@ typedef struct
 	float max;
 }minMax_st;
 
-
+int lengthOfInputData=0;
 minMax_st minMax_data;
 
 
-void (*FindMinMaxofInput[])(float *InputReading,int numberOfReadings)={FindMinValue,FindMaxValue};
+void (*FindMinMaxofInput[])(float *InputReading)={FindMinValue,FindMaxValue};
 
 void readfromConsole(float *Temperature, float *SOC)
 {
@@ -67,16 +67,16 @@ void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SO
 			   SOC_index++;
 		   }
 		   paramindex++;
-
+		   lengthOfInputData++;
 }
 
 
-void FindMinValue(float *InputReading, int numberOfReadings)
+void FindMinValue(float *InputReading)
 {
 
 	int Loop_index=0;
 	minMax_data.min=InputReading[0];
-	for(Loop_index=1; Loop_index<numberOfReadings; Loop_index++)
+	for(Loop_index=1; Loop_index< lengthOfInputData; Loop_index++)
 	{
 		if(minMax_data.min>InputReading[Loop_index])
 			minMax_data.min=InputReading[Loop_index];
@@ -84,11 +84,11 @@ void FindMinValue(float *InputReading, int numberOfReadings)
 	printf("the value of the min is %f\n", minMax_data.min);
 }
 
-void FindMaxValue(float *InputReading, int numberOfReadings)
+void FindMaxValue(float *InputReading)
 {
 	int Loop_index=0;
 	minMax_data.max=InputReading[0];
-	for(Loop_index=1; Loop_index<numberOfReadings; Loop_index++)
+	for(Loop_index=1; Loop_index<lengthOfInputData; Loop_index++)
 	{
 		if(minMax_data.max<InputReading[Loop_index])
 			minMax_data.max=InputReading[Loop_index];
@@ -96,14 +96,14 @@ void FindMaxValue(float *InputReading, int numberOfReadings)
 	printf("the value of the max is %f\n", minMax_data.max);
 }
 
-void MovingAvg(float *arrayvalue,int arraySize)
+void MovingAvg(float *arrayvalue)
 {
 	int Loop_counter=0;
 	float avg=0;
 	int Modvalue=0,Array_index=0;
 	float average[1024]={};
 
-	for(Loop_counter=0;Loop_counter<arraySize;Loop_counter++)
+	for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
 	{
 		Modvalue++;
 		if(Modvalue%5==0)
@@ -129,20 +129,19 @@ int main()
 	float SOC[]={};
 	int numberOfReadings=0;
 	readfromConsole(Temperature,SOC );
-	numberOfReadings= sizeof(Temperature) / sizeof(Temperature[0]);
-	for (int i=0;i<numberOfReadings;i++)
+	for (int i=0;i< lengthOfInputData;i++)
 	{
 	   printf("the value of the temp in main is %f\n", Temperature[i]);
 	   printf("the value of the SOC in main is %f\n", SOC[i]);
 	}
 	
 	
-	(*FindMinMaxofInput[0])(Temperature,numberOfReadings);
-	(*FindMinMaxofInput[1])(Temperature,numberOfReadings);
-	(*FindMinMaxofInput[0])(SOC,numberOfReadings);
-	(*FindMinMaxofInput[1])(SOC,numberOfReadings);
+	(*FindMinMaxofInput[0])(Temperature);
+	(*FindMinMaxofInput[1])(Temperature);
+	(*FindMinMaxofInput[0])(SOC);
+	(*FindMinMaxofInput[1])(SOC);
     
-    MovingAvg(Temperature,numberOfReadings);
-	MovingAvg(SOC,numberOfReadings);
+    MovingAvg(Temperature);
+	MovingAvg(SOC);
 	return 0;
 }

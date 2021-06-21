@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-void FindMaxValue(float *InputReading, int numberOfReadings);
-void FindMinValue(float *InputReading, int numberOfReadings);
+void FindMaxValue(float *InputReading);
+void FindMinValue(float *InputReading);
 void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SOC);
 void ProcessReadData(char *InputData, float *Temperature, float *SOC);
-void MovingAvg(float *arrayvalue,int arraySize);
+void MovingAvg(float *arrayvalue);
 void readfromConsole(float *Temperature, float *SOC);
