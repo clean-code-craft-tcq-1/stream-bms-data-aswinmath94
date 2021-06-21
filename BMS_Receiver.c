@@ -6,7 +6,9 @@
 #include "BMS_Receiver.h"
 
 int lengthOfInputData=0;
-
+minMax_st minMax_data;
+float Temperature[MAX_SIZE_TO_READ]={};
+float SOC[MAX_SIZE_TO_READ]={};
 
 ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
 
