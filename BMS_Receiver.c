@@ -57,17 +57,18 @@ void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SO
 		   if(paramindex % 2==0)
 		   {
 			   Temperature[Temperature_index]= strtod(InputData,NULL);
-			   printf("the value of the temp is %0.4f\n", Temperature[Temperature_index]);
+			   printf("the value of the temp is %0.6f\n", Temperature[Temperature_index]);
 			   Temperature_index++;
 		   }
 		   else 
 		   {
 			   SOC[SOC_index]=strtod(InputData,NULL);
-			   printf("the value of the SOC is %f\n", SOC[SOC_index]);
+			   printf("the value of the SOC is %0.6f\n", SOC[SOC_index]);
 			   SOC_index++;
+			   lengthOfInputData++;
 		   }
 		   paramindex++;
-		   lengthOfInputData++;
+		   
 }
 
 
