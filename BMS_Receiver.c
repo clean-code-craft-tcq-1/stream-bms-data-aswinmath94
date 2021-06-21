@@ -44,6 +44,7 @@ ResultType ProcessReadData(char *InputData, float Temperature[], float SOC[])
 	   ResultCompareSOC= strcmp(InputData, InputArray_Dontprocess[1]);
 	   if(( ResultComparetemp ==0) || (ResultCompareSOC ==0))
 	   {
+
 		  ProcessedDataSuccess=Success;
   	   }
 	   else
@@ -63,12 +64,14 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 	
     InputStringlen = strlen(InputData);
     InputData[InputStringlen-1] = '\0';
+
     if(paramindex % 2==0)
     {
  	   Temperature[Temperature_index]= strtod(InputData,NULL);
 	   printf("the value of the temp is %0.6f\n", Temperature[Temperature_index]);
 	   Temperature_index++;
-	    BatteryDataReady=Success;
+	   (void)FindMovingAverage(Temperature, Temperature_index);
+	   BatteryDataReady=Success;
     }
     else 
     {
@@ -76,11 +79,12 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 	   printf("the value of the SOC is %0.6f\n", SOC[SOC_index]);
 	   SOC_index++;
 	   lengthOfInputData++;
+	   (void)FindMovingAverage(SOC,SOC_index);
 	   BatteryDataReady=Success;
     }
     paramindex++;
-	(void)FindMovingAverage(Temperature);
-	(void)FindMovingAverage(SOC);
+
+
     return BatteryDataReady;
 		   
 }
@@ -117,20 +121,16 @@ ResultType FindMaxValue(float InputReading[])
 	return FoundMaxValue;
 }
 
-ResultType FindMovingAverage(float arrayvalue[])
+ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 {
 	static int Loop_counter=0;
 	ResultType FoundMovingAverage= Failure;
 	float avg=0;
 	int Modvalue=0,Array_index=0;
 	float average[1024]={};
-	float sum;
-	
-	if (lengthOfInputData>=5)
-	{
-		
-		
-    for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
+
+
+    for(Loop_counter=0; (lengthofData>=5)&&(Loop_counter<lengthofData);Loop_counter++)
 	 {
 		Modvalue++;
 		if(Modvalue%5==0)
@@ -146,14 +146,8 @@ ResultType FindMovingAverage(float arrayvalue[])
 
 	 }
 	  for (int m=0; m<lengthOfInputData; m++)
-	{
-		printf("the value of the average is %f\n", average[m]);
-	}
-
-	
-		FoundMovingAverage=Success;
-    }
-	
-	
+	  {
+		  printf("the value of the average is %f\n", average[m]);
+	  }
 	return FoundMovingAverage;
 }

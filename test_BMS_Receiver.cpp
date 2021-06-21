@@ -29,11 +29,11 @@ TEST_CASE("Case for Positive test case:-Success of finding SOC array Maximum val
 
 TEST_CASE("Case for evaluating success of Moving average of temperature") {
 
-  REQUIRE(FindMovingAverage(Temperature) == Success);
+  REQUIRE(FindMovingAverage(Temperature,lengthOfInputData) == Success);
 }
 
 TEST_CASE("Case for evaluating success of Moving average of SOC") {
 
-  REQUIRE(FindMovingAverage(SOC) == Success);
+  REQUIRE(FindMovingAverage(SOC,lengthOfInputData) == Success);
 }
 
