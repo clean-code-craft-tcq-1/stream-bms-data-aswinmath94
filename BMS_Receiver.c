@@ -9,7 +9,7 @@ int lengthOfInputData=0;
 minMax_st minMax_data;
 
 
-void (*FindMinMaxofInput[])(float *InputReading)={FindMinValue,FindMaxValue};
+void (*FindMinMaxofInput[2])(float InputReading[])={FindMinValue,FindMaxValue};
 
 void readfromConsole(float *Temperature, float *SOC)
 {
@@ -21,7 +21,7 @@ void readfromConsole(float *Temperature, float *SOC)
    }
 }
 
-void ProcessReadData(char *InputData, float *Temperature, float *SOC)
+void ProcessReadData(char *InputData, float Temperature[], float SOC[])
 {
 	int ResultComparetemp,ResultCompareSOC=0;
 	const char * InputArray_Dontprocess[] = {
@@ -39,7 +39,7 @@ void ProcessReadData(char *InputData, float *Temperature, float *SOC)
 	   }
 }  
 
-void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SOC)
+void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[])
 {
 	int InputStringlen=0;
 	static int Temperature_index=0;
@@ -66,7 +66,7 @@ void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SO
 }
 
 
-void FindMinValue(float *InputReading)
+void FindMinValue(float InputReading[])
 {
 
 	int Loop_index=0;
@@ -79,7 +79,7 @@ void FindMinValue(float *InputReading)
 	printf("the value of the min is %f\n", minMax_data.min);
 }
 
-void FindMaxValue(float *InputReading)
+void FindMaxValue(float InputReading[])
 {
 	int Loop_index=0;
 	minMax_data.max=InputReading[0];
@@ -91,7 +91,7 @@ void FindMaxValue(float *InputReading)
 	printf("the value of the max is %f\n", minMax_data.max);
 }
 
-void MovingAvg(float *arrayvalue)
+void MovingAvg(float arrayvalue[])
 {
 	int Loop_counter=0;
 	float avg=0;
