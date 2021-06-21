@@ -17,7 +17,7 @@ typedef struct
 minMax minMax1;
 
 
-void readfromConsole(Temperature, SOC)
+void readfromConsole(float Temperature[], float SOC[])
 {
 	char input[1024];
 	int i,j,k=0;
