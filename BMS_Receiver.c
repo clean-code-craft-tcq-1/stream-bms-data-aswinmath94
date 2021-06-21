@@ -8,14 +8,14 @@
 int lengthOfInputData=0;
 minMax_st minMax_data;
 
-typdef enum
+typedef enum
 {
 	ToFindMinValue,
 	ToFindMaxvalue
 }UserRequestMinMax_e;
 
 UserRequestMinMax_e UserRequestMinMax;
-void (*FindMinMaxofInput[])(float InputReading[],UserRequestMinMax_e UserRequestMinMax)={FindMinValue,FindMaxValue};
+void (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
 
 void readfromConsole(float *Temperature, float *SOC)
 {
