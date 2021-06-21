@@ -6,16 +6,11 @@
 #include "BMS_Receiver.h"
 
 int lengthOfInputData=0;
-minMax_st minMax_data;
 
-typedef enum
-{
-	ToFindMinValue,
-	ToFindMaxValue
-}UserRequestOperation;
+
 ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
 
-ResultType FindMinandMaxValue((float InputReading[]), UserRequestOperation UserRequestOperator)
+ResultType FindMinandMaxValue(float InputReading[], UserRequestOperation UserRequestOperator)
 {
 	ResultType UserRequestSuccess= Failure;
 	UserRequestSuccess=(*FindMinMaxofInput[UserRequestOperator])(InputReading);
