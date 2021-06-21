@@ -1,9 +1,9 @@
 
-#include <stdio.h>
+
 #include <math.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "BMS_Receiver.h"
 
 typedef struct
 {
@@ -69,12 +69,6 @@ void readfromConsole(float Temperature[], float SOC[])
 
 }
 
-void FindMinMaxvalue(, )
-{
-	int loop_index=0;
-	
-	
-}
 
 void FindMinValue(float InputReading[], int numberOfReadings)
 {
