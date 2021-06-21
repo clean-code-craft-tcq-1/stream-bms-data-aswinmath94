@@ -79,8 +79,8 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 	   BatteryDataReady=Success;
     }
     paramindex++;
-	(void)FindMovingAverage(float Temperature[]);
-	(void)FindMovingAverage(float SOC[]);
+	(void)FindMovingAverage(Temperature);
+	(void)FindMovingAverage(SOC);
     return BatteryDataReady;
 		   
 }
