@@ -256,7 +256,7 @@ ResultType PrintToConsole( float PrintData[],PrintingData DataToPrint)
 	 printf( " The Maximum value of the %s data received is %f \n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max );
 	 printf( " The Minimum value of the %s data received is %f \n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min );
 	
-	 for(int Loopcount=0; Loopcount< DataToPrint.lengthOfInputData;Loopcount++)
+	 for(int Loopcount=0; Loopcount< DataToPrint.LengthOfAvgArray;Loopcount++)
 	 {
         printf("The value of the average of %s is %f\n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],PrintData[Loopcount]);
 	 }
