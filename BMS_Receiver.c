@@ -38,13 +38,13 @@ void ProcessReadData(char *InputData, float *Temperature, float *SOC)
 		   ExtractBatteryData_FromInput(InputData, Temperature, SOC);
 	   }
 }  
-static int Temperature_index=0;
-static int SOC_index=0;
-static int paramindex=0;
+
 void ExtractBatteryData_FromInput(char *InputData, float *Temperature, float *SOC)
 {
 	int InputStringlen=0;
-
+	static int Temperature_index=0;
+	static int SOC_index=0;
+	static int paramindex=0;
 	
 		   InputStringlen = strlen(InputData);
 		   InputData[InputStringlen-1] = '\0';
@@ -120,8 +120,8 @@ void MovingAvg(float *arrayvalue)
 
 int main()
 {
-	float Temperature[]={};
-	float SOC[]={};
+	float Temperature[]={0};
+	float SOC[]={0};
 	readfromConsole(Temperature,SOC );
 	for (int i=0;i< lengthOfInputData;i++)
 	{
