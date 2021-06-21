@@ -137,6 +137,10 @@ ResultType FindMovingAverage(float arrayvalue[])
 			 sum = sum+arrayvalue[i]-arrayvalue[i-5];
 			 average[j++] = sum/5;
 		}
+		 for (int m=0; m<lengthOfInputData; m++)
+ {
+	 printf("the value of the average is %f\n", average[m]);
+ }
 	// for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
 	// {
 		// Modvalue++;
@@ -152,12 +156,9 @@ ResultType FindMovingAverage(float arrayvalue[])
 		// }
 
 	// }
- for (int m=0; m<lengthOfInputData; m++)
- {
-	 printf("the value of the average is %f\n", average[m]);
- }
-	
 
+	
+		FoundMovingAverage=Success;
     }
 	
 	
