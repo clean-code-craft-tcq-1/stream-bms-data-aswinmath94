@@ -26,7 +26,7 @@ TEST_CASE("Case for Positive test case :-Success of finding SOC array Minimum va
 /*Positive test case */
 TEST_CASE("Case for Positive test case:-Success of finding SOC array Maximum value value") {
   UserRequestOperation Operator= ToFindMaxValue;
-  REQUIRE(FindMinandMaxValue(SOC,Operator  == Success);
+  REQUIRE(FindMinandMaxValue(SOC,Operator)  == Success);
   REQUIRE(minMax_data.max != 0);
 }
 
