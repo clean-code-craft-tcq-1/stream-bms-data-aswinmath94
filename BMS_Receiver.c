@@ -96,7 +96,7 @@ void FindMaxValue(float *InputReading, int numberOfReadings)
 	printf("the value of the max is %f\n", minMax_data.max);
 }
 
-void MovingAvg(float arrayvalue[],int arraySize)
+void MovingAvg(float *arrayvalue,int arraySize)
 {
 	int Loop_counter=0;
 	float avg=0;
@@ -118,7 +118,9 @@ void MovingAvg(float arrayvalue[],int arraySize)
 
 	}
 	for (int m=0; m<arraySize; m++)
+	{
 		printf("the value of the average is %f\n", average[m]);
+	}
 }
 
 int main()
@@ -128,6 +130,13 @@ int main()
 	int numberOfReadings=0;
 	readfromConsole(Temperature,SOC );
 	numberOfReadings= sizeof(Temperature) / sizeof(Temperature[0]);
+	for (int i=0;i<numberOfReadings;i++)
+	{
+	   printf("the value of the temp in main is %f\n", Temperature[i]);
+	   printf("the value of the SOC in main is %f\n", SOC[i]);
+	}
+	
+	
 	(*FindMinMaxofInput[0])(Temperature,numberOfReadings);
 	(*FindMinMaxofInput[1])(Temperature,numberOfReadings);
 	(*FindMinMaxofInput[0])(SOC,numberOfReadings);
