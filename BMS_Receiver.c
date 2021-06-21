@@ -5,12 +5,6 @@
 #include <string.h>
 #include "BMS_Receiver.h"
 
-typedef struct
-{
-	float min;
-	float max;
-}minMax_st;
-
 int lengthOfInputData=0;
 minMax_st minMax_data;
 
@@ -23,7 +17,7 @@ void readfromConsole(float *Temperature, float *SOC)
 	
    while (scanf("%s\n", InputData) !=EOF) 
    {
-	   ProcessReadData(InputData, Temperature, SOC);
+	   ProcessReadData(&InputData, &Temperature, &SOC);
    }
 }
 
@@ -41,7 +35,7 @@ void ProcessReadData(char *InputData, float *Temperature, float *SOC)
   	   }
 	   else
 	   {
-		   ExtractBatteryData_FromInput(InputData, Temperature, SOC);
+		   ExtractBatteryData_FromInput(&InputData, &Temperature, &SOC);
 	   }
 }  
 
@@ -129,7 +123,7 @@ int main()
 	float Temperature[]={};
 	float SOC[]={};
 	int numberOfReadings=0;
-	readfromConsole(Temperature,SOC );
+	readfromConsole(&Temperature,&SOC );
 	for (int i=0;i< lengthOfInputData;i++)
 	{
 	   printf("the value of the temp in main is %0.6f\n", Temperature[i]);
@@ -137,12 +131,12 @@ int main()
 	}
 	
 	
-	(*FindMinMaxofInput[0])(Temperature);
-	(*FindMinMaxofInput[1])(Temperature);
-	(*FindMinMaxofInput[0])(SOC);
-	(*FindMinMaxofInput[1])(SOC);
+	(*FindMinMaxofInput[0])(&Temperature);
+	(*FindMinMaxofInput[1])(&Temperature);
+	(*FindMinMaxofInput[0])(&SOC);
+	(*FindMinMaxofInput[1])(&SOC);
     
-    MovingAvg(Temperature);
-	MovingAvg(SOC);
+    MovingAvg(&Temperature);
+	MovingAvg(&SOC);
 	return 0;
 }
