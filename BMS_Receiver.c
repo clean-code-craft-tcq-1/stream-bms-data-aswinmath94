@@ -128,34 +128,27 @@ ResultType FindMovingAverage(float arrayvalue[])
 	
 	if (lengthOfInputData>=5)
 	{
-		for(int i = 0; i < 5; i++)
-            sum += arrayvalue[i];
-		average[0] = sum/5;
-    
-		int j = 1;   
-		for(int i = 5; i < lengthOfInputData; i++){
-			 sum = sum+arrayvalue[i]-arrayvalue[i-5];
-			 average[j++] = sum/5;
-		}
-		 for (int m=0; m<lengthOfInputData; m++)
- {
-	 printf("the value of the average is %f\n", average[m]);
- }
-	// for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
-	// {
-		// Modvalue++;
-		// if(Modvalue%5==0)
-		// {
-			// avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
-			// avg=(float)avg/5.00;
-			// Modvalue--;
-			// average[Array_index]=avg;
-			// Array_index++;
-			// FoundMovingAverage=Success;
+		
+		
+    for(Loop_counter=0;Loop_counter<lengthOfInputData;Loop_counter++)
+	 {
+		Modvalue++;
+		if(Modvalue%5==0)
+		{
+			avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
+			avg=(float)avg/5.00;
+		    Modvalue--;
+		    average[Array_index]=avg;
+			Array_index++;
+		    FoundMovingAverage=Success;
 			
-		// }
+		}
 
-	// }
+	 }
+	  for (int m=0; m<lengthOfInputData; m++)
+	{
+		printf("the value of the average is %f\n", average[m]);
+	}
 
 	
 		FoundMovingAverage=Success;
