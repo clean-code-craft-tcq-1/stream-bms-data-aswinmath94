@@ -11,61 +11,62 @@ typedef struct
 	float max;
 }minMax_st;
 
-// typedef struct
-// {
-	// Temperature;
-	// SOC;
-// }Typeofdata_st;
-	
+
 minMax_st minMax_data;
-// Typeofdata_st TypeOfData;
+
 
 void (*FindMinMaxofInput[])(float InputReading[],int numberOfReadings)={FindMinValue,FindMaxValue};
 
 void readfromConsole(float Temperature[], float SOC[])
 {
-	char input[1024];
-	int i,j,k=0;
-	// static int paramindex=0;
-	int paramindex,Result,Result1=0;
-	const char * InputArray[] = {
-    "{'temperature':",
-    "'soc':" };
-
-   while (scanf("%s\n", input) !=EOF) 
+	char InputData[1024];
+	
+   while (scanf("%s\n", InputData) !=EOF) 
    {
-	   Result=strcmp(input, InputArray[0]); 
-	   Result1=strcmp(input, InputArray[1]);
-	   if(( Result ==0) || (Result1 ==0))
+	   ProcessReadData(InputData, Temperature, SOC);
+   }
+}
+
+void ProcessReadData(char InputData[], float Temperature[], float SOC[])
+{
+	int ResultComparetemp,ResultCompareSOC=0;
+	const char * InputArray_Dontprocess[] = {
+											"{'temperature':",
+											"'soc':" };
+	   ResultComparetemp=strcmp(InputData, InputArray_Dontprocess[0]); 
+	   ResultCompareSOC= strcmp(InputData, InputArray_Dontprocess[1]);
+	   if(( ResultComparetemp ==0) || (ResultCompareSOC ==0))
 	   {
-		   printf("the value of the character is %s\n", input);
-	    
-	   }
+		  continue;
+  	   }
 	   else
 	   {
-		   
-			   i = strlen(input);
-               input[i-1] = '\0';
-               // input[i + 1] = '\0';
+		   ExtractBatteryData_FromInput(InputData, Temperature, SOC);
+	   }
+}  
+
+void ExtractBatteryData_FromInput(char InputData[], float Temperature[], float SOC[])
+{
+	int InputStringlen=0;
+	int Temperature_index=0;
+	int SOC_index=0;
+	int paramindex=0;
+	
+		   InputStringlen = strlen(InputData);
+		   InputData[InputStringlen-1] = '\0';
 		   if(paramindex % 2==0)
 		   {
-			   Temperature[j]= atof(input);
-			   printf("the value of the temp is %f\n", Temperature[j]);
-			   j++;
+			   Temperature[Temperature_index]= atof(InputData);
+			   printf("the value of the temp is %f\n", Temperature[Temperature_index]);
+			   Temperature_index++;
 		   }
 		   else 
 		   {
-			   SOC[k]=atof(input);
-			   printf("the value of the SOC is %f\n", SOC[k]);
-			   k++;
+			   SOC[SOC_index]=atof(InputData);
+			   printf("the value of the SOC is %f\n", SOC[SOC_index]);
+			   SOC_index++;
 		   }
 		   paramindex++;
-		   
-		   
-	   }
-          
-   }
-	
 
 }
 
