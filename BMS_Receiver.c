@@ -123,11 +123,12 @@ ResultType FindMaxValue(float InputReading[])
 
 ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 {
-	int Loop_counter=0;
+	static int Loop_counter=0;
 	ResultType FoundMovingAverage= Failure;
 	float avg=0;
-	int Modvalue=0,Array_index=0;
-	float average[1024]={};
+	static int Modvalue=0;
+	static int Array_index=0;
+	static float average[1024]={};
 
 
     for(Loop_counter=0; (lengthofData>=5)&&(Loop_counter<lengthofData);Loop_counter++)
