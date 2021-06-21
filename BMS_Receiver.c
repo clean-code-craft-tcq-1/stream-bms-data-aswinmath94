@@ -11,7 +11,11 @@ float Temperature[MAX_SIZE_TO_READ]={};
 float SOC[MAX_SIZE_TO_READ]={};
 
 ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxValue};
-
+const char *BatteryMessage[] =
+{
+    "Temperature",
+    "State Of Charge"
+};
 
 /**
  ***************************************************************************************************
@@ -24,17 +28,31 @@ ResultType (*FindMinMaxofInput[])(float InputReading[])={FindMinValue,FindMaxVal
  *   
  *         
  * \return  ResultType (user defined enum)
- * \retval  Success or failure indicating execsution status of Requested operation.
+ * \retval  Success or failure indicating execution status of Requested operation.
  ***************************************************************************************************
  */
 ResultType FindMinandMaxValue(float InputReading[], UserRequestOperation UserRequestOperator)
 {
 	ResultType UserRequestSuccess= Failure;
 	UserRequestSuccess=(*FindMinMaxofInput[UserRequestOperator])(InputReading);
+	
 	return UserRequestSuccess;
 }
 	
-
+/**
+ ***************************************************************************************************
+ * Function Name: readfromConsole
+ * 
+ * Function Description: Finds the Minimum or maximum value of the input array passed in the argument depending on the value of UserRequestOperator.
+ *
+ * \param  float Temperature[] :- array to fill the read 1st data from stdin(console)
+ *         float SOC[] :- array to fill the read 2nd data from stdin(console)
+ *   
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Data reading process.
+ ***************************************************************************************************
+ */
 ResultType readfromConsole(float Temperature[], float SOC[])
 {
 	char InputData[1024];
@@ -45,7 +63,21 @@ ResultType readfromConsole(float Temperature[], float SOC[])
    }
    return ReadConsoleSuccess;
 }
-
+/**
+ ***************************************************************************************************
+ * Function Name: ProcessReadData
+ * 
+ * Function Description: Process the read data to segragate useful value for Receiver process.
+ *
+ * \param  char *InputData :-  to read string continuously
+ *         float Temperature[]:- array to fill the read 1st data from stdin(console)
+ *         float SOC[] :- array to fill the read 2nd data from stdin(console)
+ *   
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Data reading process.
+ ***************************************************************************************************
+ */
 ResultType ProcessReadData(char *InputData, float Temperature[], float SOC[])
 {
 	int ResultComparetemp,ResultCompareSOC=0;
@@ -66,7 +98,21 @@ ResultType ProcessReadData(char *InputData, float Temperature[], float SOC[])
 	   }
 	   return ProcessedDataSuccess;
 }  
-
+/**
+ ***************************************************************************************************
+ * Function Name: ExtractBatteryData_FromInput
+ * 
+ * Function Description: Extract the float value after segragating string data
+ *
+ * \param  char *InputData :-  to read string continuously
+ *         float Temperature[]:- array to fill the read 1st data from stdin(console)
+ *         float SOC[] :- array to fill the read 2nd data from stdin(console)
+ *   
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Useful data extraction
+ ***************************************************************************************************
+ */
 ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[])
 {
 	ResultType BatteryDataReady= Failure;
@@ -100,7 +146,20 @@ ResultType ExtractBatteryData_FromInput(char *InputData, float Temperature[], fl
 		   
 }
 
-
+/**
+ ***************************************************************************************************
+ * Function Name: FindMinValue
+ * 
+ * Function Description: Extract the float value after segragating string data
+ *
+ * \param  float InputReading[]:- Array on which minimum value have to be calcutated upon
+ *         
+ *   
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Finding of minimum value.
+ ***************************************************************************************************
+ */
 ResultType FindMinValue(float InputReading[])
 {
 
@@ -113,11 +172,23 @@ ResultType FindMinValue(float InputReading[])
 			minMax_data.min=InputReading[Loop_index];
 		FoundMinValue=Success;
 	}
-	printf("the value of the min is %f\n", minMax_data.min);
 	return FoundMinValue;
 }
-
-ResultType FindMaxValue(float InputReading[])
+/**
+ ***************************************************************************************************
+ * Function Name: FindMaxValue
+ * 
+ * Function Description: Extract the float value after segragating string data
+ *
+ * \param  float InputReading[]:- Array on which Maximum value have to be calcutated upon
+ *         
+ *   
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Finding of Maximum value.
+ ***************************************************************************************************
+ */
+ResultType FindMaxValue(float InputReading[] )
 {
 	ResultType FoundMaxValue= Failure;
 	int Loop_index=0;
@@ -131,8 +202,21 @@ ResultType FindMaxValue(float InputReading[])
 	printf("the value of the max is %f\n", minMax_data.max);
 	return FoundMaxValue;
 }
-
-ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
+/**
+ ***************************************************************************************************
+ * Function Name: FindMovingAverage
+ * 
+ * Function Description: Extract the float value after segragating string data
+ *
+ * \param  float arrayvalue[] :-  Dataarray on which moving average needs to be found
+ *         int lengthofData:- Length of data on which moving average needs to be found.
+ *         float OutputAveragearray[]:-  Output parameter : Averaged data is output
+ *         
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Finding moving average of input array value.
+ ***************************************************************************************************
+ */
+ResultType FindMovingAverage(float InputArray[], int lengthofData, float OutputAveragearray[])
 {
     int Loop_counter=0;
     int m=0;
@@ -140,8 +224,6 @@ ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 	float avg=0;
     int Modvalue=0;
     int Array_index=0;
-    float average[MAX_SIZE_TO_READ-5]={};
-
 
     for(Loop_counter=0; (lengthofData>=5)&&(Loop_counter<lengthofData);Loop_counter++)
 	 {
@@ -151,16 +233,40 @@ ResultType FindMovingAverage(float arrayvalue[], int lengthofData)
 			avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
 			avg=(float)avg/5.00;
 		    Modvalue--;
-		    average[Array_index]=avg;
+		    OutputAveragearray[Array_index]=avg;
 			Array_index++;
 		    FoundMovingAverage=Success;
 			
 		}
 
 	 }
-	 for(m=0; (lengthofData>=5)&&(m<lengthofData);m++)
-	 {
-        printf("the value of the average is %f\n", average[m]);
-	 }
+
 	return FoundMovingAverage;
+}
+/**
+ ***************************************************************************************************
+ * Function Name: PrintToConsole
+ * 
+ * Function Description: Function prints the data of minimum, maximum,moving average of 5
+ *
+ * \param  float PrintData[] :-  Array value needed to print
+ *         PrintingData DataToPrint:- Collection of data provided as input to be output on the console.
+ *                  
+ * \return  ResultType (user defined enum)
+ * \retval  Success or failure indicating execution status of Printing to console.
+ ***************************************************************************************************
+ */
+ReturnType PrintToConsole( float PrintData[],PrintingData DataToPrint)
+{
+	 ResultType PrintedToConsole= Failure;
+	 printf( " The Maximum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.max };
+	 printf( " The Minimum value of the %s data received is %f \n" BatteryMessage[DataToPrint.IndexOfBatteryMessage],minMax_data.min };
+	
+	 for(int Loopcount=0; (LengthofData>=5)&&(Loopcount<LengthofData);Loopcount++)
+	 {
+        printf("The value of the average of %s is %f\n", BatteryMessage[DataToPrint.IndexOfBatteryMessage],PrintData[Loopcount]);
+	 }
+	 PrintedToConsole=Success;
+	 return PrintedToConsole;
+	 
 }

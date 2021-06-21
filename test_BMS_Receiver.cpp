@@ -12,13 +12,19 @@ TEST_CASE("Case for Postive test case :- Success of Data readFromConsole") {
 /*Positive test case */
 TEST_CASE("Case for Positive test case :-Success of finding temperature array Minimum value") {
 	UserRequestOperation Operator= ToFindMinValue;
-  REQUIRE(FindMinandMaxValue(Temperature,Operator) == Success);
+    REQUIRE(FindMinandMaxValue(Temperature,Operator) == Success);
 }
 
 /*Positive test case */
 TEST_CASE("Case for Positive test case :-Success of finding SOC array Minimum value") {
   UserRequestOperation Operator= ToFindMinValue;
   REQUIRE(FindMinandMaxValue(SOC,Operator) == Success);
+}
+
+/*Positive test case */
+TEST_CASE("Case for Positive test case:-Success of finding Temperature array Maximum value value") {
+  UserRequestOperation Operator= ToFindMaxValue;
+  REQUIRE(FindMinandMaxValue(Temperature,Operator )  == Success);
 }
 
 /*Positive test case */
@@ -37,3 +43,29 @@ TEST_CASE("Case for evaluating success of Moving average of SOC") {
   REQUIRE(FindMovingAverage(SOC,lengthOfInputData) == Success);
 }
 
+TEST_CASE("Case for evaluating Printing to console:Temperature:Minimum,Maximum, Moving Average") 
+{
+	float OutputAveragearray[lengthOfInputData]={};
+	PrintingData DataToPrint;
+	DataToPrint.UserRequestOperator= ToFindMinValue;
+	DataToPrint.IndexOfBatteryMessage= TEMPERATURE;
+	DataToPrint.LengthOfAvgArray=lengthOfInputData;
+	REQUIRE(FindMinandMaxValue(Temperature,DataToPrint.UserRequestOperator) == Success);
+	DataToPrint.UserRequestOperator= ToFindMaxValue;
+	REQUIRE(FindMinandMaxValue(Temperature,DataToPrint.UserRequestOperator) == Success);
+    REQUIRE(FindMovingAverage(Temperature,DataToPrint.LengthOfAvgArray,OutputAveragearray) == Success);
+    REQUIRE(PrintToConsole(OutputAveragearray,DataToPrint) == Success);
+}
+
+TEST_CASE("Case for evaluating Printing to console:SOC:Minimum,Maximum, Moving Average") 
+{
+	float OutputAveragearray[lengthOfInputData]={};
+	PrintingData DataToPrint;
+	DataToPrint.UserRequestOperator= ToFindMinValue;
+	DataToPrint.IndexOfBatteryMessage= STATEOFCHARGE;
+	DataToPrint.LengthOfAvgArray=lengthOfInputData;
+    REQUIRE(FindMinandMaxValue(SOC,DataToPrint.UserRequestOperator) == Success);
+	DataToPrint.UserRequestOperator= ToFindMaxValue;
+    REQUIRE(FindMovingAverage(SOC,DataToPrint.LengthOfAvgArray,OutputAveragearray) == Success);
+    REQUIRE(PrintToConsole(OutputAveragearray,DataToPrint) == Success);
+}
