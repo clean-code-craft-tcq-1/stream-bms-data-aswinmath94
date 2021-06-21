@@ -11,19 +11,22 @@ TEST_CASE("Case for Postive test case :- Success of Data readFromConsole") {
 }
 /*Positive test case */
 TEST_CASE("Case for Positive test case :-Success of finding temperature array Minimum value") {
-  REQUIRE((*FindMinMaxofInput[Find_Min_Value])(Temperature) == Success);
+	UserRequestOperation Operator= ToFindMinValue;
+  REQUIRE(FindMinandMaxValue(Temperature,Operator) == Success);
   REQUIRE(minMax_data.min != 0);
 }
 
 /*Positive test case */
 TEST_CASE("Case for Positive test case :-Success of finding SOC array Minimum value") {
-  REQUIRE((*FindMinMaxofInput[Find_Min_Value])(SOC) == Success);
+  UserRequestOperation Operator= ToFindMinValue;
+  REQUIRE(FindMinandMaxValue(SOC,Operator) == Success);
   REQUIRE(minMax_data.min != 0);
 }
 
 /*Positive test case */
 TEST_CASE("Case for Positive test case:-Success of finding SOC array Maximum value value") {
-  REQUIRE((*FindMinMaxofInput[Find_Max_Value])(SOC) == Success);
+  UserRequestOperation Operator= ToFindMaxValue;
+  REQUIRE(FindMinandMaxValue(SOC,Operator  == Success);
   REQUIRE(minMax_data.max != 0);
 }
 
