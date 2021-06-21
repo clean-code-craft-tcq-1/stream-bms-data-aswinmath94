@@ -14,19 +14,18 @@ void (*FindMinMaxofInput[2])(float InputReading[])={FindMinValue,FindMaxValue};
 void readfromConsole(float *Temperature, float *SOC)
 {
 	char InputData[1024];
-	
-   while (scanf("%s\n", InputData) !=EOF) 
-   {
-	   ProcessReadData(InputData, Temperature, SOC);
-   }
-}
-
-void ProcessReadData(char *InputData, float Temperature[], float SOC[])
-{
-	int ResultComparetemp,ResultCompareSOC=0;
+	int InputStringlen=0;
+	static int Temperature_index=0;
+	static int SOC_index=0;
+	static int paramindex=0;
+	  int ResultComparetemp,ResultCompareSOC=0;
 	const char * InputArray_Dontprocess[] = {
 											"{'temperature':",
 											"'soc':" };
+	
+   while (scanf("%s\n", InputData) !=EOF) 
+   {
+	 
 	   ResultComparetemp=strcmp(InputData, InputArray_Dontprocess[0]); 
 	   ResultCompareSOC= strcmp(InputData, InputArray_Dontprocess[1]);
 	   if(( ResultComparetemp ==0) || (ResultCompareSOC ==0))
@@ -35,16 +34,7 @@ void ProcessReadData(char *InputData, float Temperature[], float SOC[])
   	   }
 	   else
 	   {
-		   ExtractBatteryData_FromInput(InputData, Temperature, SOC);
-	   }
-}  
-
-void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[])
-{
-	int InputStringlen=0;
-	static int Temperature_index=0;
-	static int SOC_index=0;
-	static int paramindex=0;
+		   
 	
 		   InputStringlen = strlen(InputData);
 		   InputData[InputStringlen-1] = '\0';
@@ -62,8 +52,53 @@ void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SO
 			   lengthOfInputData++;
 		   }
 		   paramindex++;
-		   
+	   }
+   }
 }
+
+// void ProcessReadData(char *InputData, float Temperature[], float SOC[])
+// {
+	// int ResultComparetemp,ResultCompareSOC=0;
+	// const char * InputArray_Dontprocess[] = {
+											// "{'temperature':",
+											// "'soc':" };
+	   // ResultComparetemp=strcmp(InputData, InputArray_Dontprocess[0]); 
+	   // ResultCompareSOC= strcmp(InputData, InputArray_Dontprocess[1]);
+	   // if(( ResultComparetemp ==0) || (ResultCompareSOC ==0))
+	   // {
+		  // //do nothing
+  	   // }
+	   // else
+	   // {
+		   // ExtractBatteryData_FromInput(InputData, Temperature, SOC);
+	   // }
+// }  
+
+// void ExtractBatteryData_FromInput(char *InputData, float Temperature[], float SOC[])
+// {
+	// int InputStringlen=0;
+	// static int Temperature_index=0;
+	// static int SOC_index=0;
+	// static int paramindex=0;
+	
+		   // InputStringlen = strlen(InputData);
+		   // InputData[InputStringlen-1] = '\0';
+		   // if(paramindex % 2==0)
+		   // {
+			   // Temperature[Temperature_index]= strtod(InputData,NULL);
+			   // printf("the value of the temp is %0.6f\n", Temperature[Temperature_index]);
+			   // Temperature_index++;
+		   // }
+		   // else 
+		   // {
+			   // SOC[SOC_index]=strtod(InputData,NULL);
+			   // printf("the value of the SOC is %0.6f\n", SOC[SOC_index]);
+			   // SOC_index++;
+			   // lengthOfInputData++;
+		   // }
+		   // paramindex++;
+		   
+// }
 
 
 void FindMinValue(float InputReading[])
