@@ -13,13 +13,13 @@ typedef struct
 }minMax;
 
 
+	
 minMax minMax1;
 
-void readfromConsole(void)
+
+void readfromConsole(Temperature, SOC)
 {
 	char input[1024];
-	float Temperature[1024]={};
-    float SOC[1024]={};
 	int i,j,k=0;
 	// static int paramindex=0;
 	int paramindex,Result,Result1=0;
@@ -104,11 +104,11 @@ void MovingAvg(float arrayvalue[],int arraySize)
 
 int main()
 {
-	float temp[10]={12.5,13.4,16.2,25.8,67.5,11.1,18.9,33.3,44.1,12.7};
-	float SOC[10]={12.5,13.4,16.2,25.8,67.5,11.1,18.9,33.3,44.1,12.7};
-	readfromConsole();
-    findMinMax(temp);
+	float Temperature[1024]={0};
+	float SOC[1024]={0};
+	readfromConsole(Temperature,SOC );
+    findMinMax(Temperature);
     findMinMax(SOC);
-    MovingAvg(temp,30);
+    MovingAvg(Temperature,30);
 	return 0;
 }
