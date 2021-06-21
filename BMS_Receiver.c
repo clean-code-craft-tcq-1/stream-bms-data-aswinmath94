@@ -81,6 +81,7 @@ void FindMinValue(float *InputReading, int numberOfReadings)
 		if(minMax_data.min>InputReading[Loop_index])
 			minMax_data.min=InputReading[Loop_index];
 	}
+	printf("the value of the min is %f\n", minMax_data.min);
 }
 
 void FindMaxValue(float *InputReading, int numberOfReadings)
@@ -92,30 +93,33 @@ void FindMaxValue(float *InputReading, int numberOfReadings)
 		if(minMax_data.max<InputReading[Loop_index])
 			minMax_data.max=InputReading[Loop_index];
 	}
+	printf("the value of the max is %f\n", minMax_data.max);
 }
 
 void MovingAvg(float arrayvalue[],int arraySize)
 {
-	int i=0;
+	int Loop_counter=0;
 	float avg=0;
-	int j=0,k=0;
+	int Modvalue=0,Array_index=0;
 	float average[1024]={};
 
-	for(i=0;i<arraySize;i++)
+	for(Loop_counter=0;Loop_counter<arraySize;Loop_counter++)
 	{
-		j++;
-		if(j%5==0)
+		Modvalue++;
+		if(Modvalue%5==0)
 		{
-			avg=arrayvalue[i]+arrayvalue[i-1]+arrayvalue[i-2]+arrayvalue[i-3]+arrayvalue[i-4];
+			avg=arrayvalue[Loop_counter]+arrayvalue[Loop_counter-1]+arrayvalue[Loop_counter-2]+arrayvalue[Loop_counter-3]+arrayvalue[Loop_counter-4];
 			avg=(float)avg/5.00;
-			j--;
-			average[k]=avg;
-			k++;
-		}
-
+			Modvalue--;
+			average[Array_index]=avg;
+			Array_index++;
+			
 		}
 
 	}
+	for (int m=0; m<arraySize; m++)
+		printf("the value of the average is %f\n", average[m]);
+}
 
 int main()
 {
